@@ -8,6 +8,8 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.EntityFrameworkCore;
+using NorthwindContextLib;
 
 namespace NorthwindWeb
 {
@@ -18,7 +20,8 @@ namespace NorthwindWeb
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc(option => option.EnableEndpointRouting = false);
-            
+
+            services.AddDbContext<Northwind>(options => options.UseSqlServer("Server=(localdb)\\ mssqllocaldb;Database=Northwind; Trusted_Connection=True;MultipleActiveResultSets=true"));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
